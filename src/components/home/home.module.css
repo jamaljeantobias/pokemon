@@ -1,0 +1,19 @@
+.main {
+  padding: 2.5rem;
+}
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 5rem;
+}
+
+.image {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.pokemonCard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
