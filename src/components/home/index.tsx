@@ -4,8 +4,19 @@ import { PageLink } from "../global/link";
 
 let pokemonBaseUrl = `https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`;
 
+interface PokemonsInterface {
+  count: Number;
+  next: string;
+  previous: string | null;
+  results: Array<{
+    name: string;
+    url: string;
+  }>;
+}
+
 export const Home = () => {
-  const [pokemons, setPokemons] = useState<any>();
+  const [pokemons, setPokemons] =
+    useState<PokemonsInterface | undefined>(undefined);
   const [isLoading, setIsloading] = useState(true);
   const [isError, setIsError] = useState(false);
   useEffect(() => {
@@ -32,6 +43,7 @@ export const Home = () => {
           let response = await fetchApi.json();
           setPokemons(response);
           setIsloading(false);
+          setIsError(false);
           break;
         default:
           setIsloading(false);
@@ -44,6 +56,7 @@ export const Home = () => {
   };
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>An Unown error occured</p>;
+
   return (
     <div className={styles.main}>
       <div>
